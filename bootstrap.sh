@@ -42,4 +42,14 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 volta install node@latest
 
+if ! grep -q 'VOLTA_HOME' "$HOME/.zshrc" 2>/dev/null; then
+  echo "==> Adding Volta to ~/.zshrc"
+  cat >> "$HOME/.zshrc" <<'EOF'
+
+# Volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+EOF
+fi
+
 echo "==> Done. Open a new shell so volta/asdf/brew are on PATH."
